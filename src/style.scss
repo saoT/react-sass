@@ -1,0 +1,73 @@
+// VARIABLES
+$primary: green;
+$secondary: blue;
+$alert: red;
+
+// MIXINS
+// les mots avec @ sont des mots sass
+@mixin addMargin ($margin) {
+  margin: $margin;
+}
+
+body {
+  background-color: $primary;
+}
+
+// NESTED DECLARATIONS
+
+// CSSS
+#app {
+  font-weight : bold;
+}
+
+#app .salutations {
+  color : $alert;
+}
+
+// SCSS
+
+.bold {
+  font-weight : bold;
+}
+
+#app {
+  @extend bold;
+
+  & .salutations {
+    @extend bold;
+    color: $alert;
+
+    &:hover {
+      color: $primary;
+    } 
+
+  }
+
+}
+
+// Class MERGING 
+.alert {
+  color : $alert;
+}
+
+.important {
+  border: 2px solid $alert;
+  color: $secondary;
+}
+
+.vip-alert {
+  @extend .alert;
+  @extend .important;
+}
+
+.small-margin {
+  @include addMargin(20px);
+}
+
+.medium-margin {
+  @include addMargin(40px);
+}
+
+.large-margin {
+  @include addMargin(60px);
+}
